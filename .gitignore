@@ -1,4 +1,2 @@
-server/database/Resource_connection.js
-server/models/resources_schema.js
-server/routes/resources/
+/server/routes/resources/ebooks/
 node_modules/

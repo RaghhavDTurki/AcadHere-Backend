@@ -3,7 +3,7 @@ const app = express();
 const dotenv = require('dotenv');
 const bodyParser = require("body-parser");
 const connectNoticeBoardDB = require('./server/database/Notice_Board_connection')
-// const connectResourcesDB = require('./server/database/Resource_connection')
+const connectResourcesDB = require('./server/database/Resource_connection')
 
 // Configure the Environment Variables
 dotenv.config({path:"config.env"});
@@ -15,7 +15,7 @@ app.use('/', require("./server/routes/router"));
 
 // Connect to DataBase
 connectNoticeBoardDB();
-// connectResourcesDB();
+connectResourcesDB();
 
 // Setting up Port
 let PORT = process.env.PORT
