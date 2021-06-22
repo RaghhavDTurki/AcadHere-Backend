@@ -1,4 +1,5 @@
-/server/database/Resource_connection.js
-/server/models/resources_schema.js
-/server/routes/resources/
+server/database/Resource_connection.js
+server/models/resources_schema.js
+server/routes/resources/
 *.env
+node_modules/
