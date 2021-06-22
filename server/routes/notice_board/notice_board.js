@@ -75,7 +75,7 @@ exports.update = (req, res) => {
     const id = req.params.id;
     req.body.Post_time = Date.now;
     // console.log(req)
-    NoticeDb.findOneAndUpdate(id, req.body, { useFindAndModify: false})
+    NoticeDb.findByIdAndUpdate(id, req.body, { useFindAndModify: false})
         .then(data => {
             if(!data)
             {
@@ -103,7 +103,7 @@ exports.delete = (req,res) => {
     else
     {
         const id = req.params.id;
-        NoticeDb.findOneAndDelete(id)
+        NoticeDb.findByIdAndDelete(id)
             .then(data => {
                 if(!data)
                 {
