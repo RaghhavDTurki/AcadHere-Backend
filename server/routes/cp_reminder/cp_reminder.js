@@ -6,7 +6,7 @@ const getCompetitions = cleaner.getCompetitions;
 
 // Headers for API
 const auth = {
-    headers : {"Authorization" : "ApiKey " + process.env.USERNAME + ":" + process.env.API_KEY}
+    headers : {"Authorization" : "ApiKey " + process.env.user + ":" + process.env.API_KEY}
 };
 
 
