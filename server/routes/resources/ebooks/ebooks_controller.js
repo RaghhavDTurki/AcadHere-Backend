@@ -11,7 +11,7 @@ exports.post_ebook = (req,res) => {
         return;
     }
 
-    // Check if content type is Video
+    // Check if content type is Ebook
     if(req.body.Resource_Type != "Ebook")
     {
         res.status(400).send({ message : "Content type should be Ebook!"});
