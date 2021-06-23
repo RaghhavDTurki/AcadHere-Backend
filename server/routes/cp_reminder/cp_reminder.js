@@ -1,5 +1,4 @@
 const axios = require("axios")
-const moment = require("moment");
 const cleaner = require("./cleaner"); 
 const CONTEST = require("./Contest_Object");
 const getCompetitions = cleaner.getCompetitions;
