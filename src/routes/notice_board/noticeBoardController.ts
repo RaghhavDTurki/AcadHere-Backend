@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { NoticeDb } from "../../models/NoticeSchema";
+import { NoticeDb } from "../../database/models/NoticeSchema";
 
 const createNotice = (req: Request, res: Response): void => {
     // Validate Request

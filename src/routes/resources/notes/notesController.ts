@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { ResourceDB } from "../../../models/ResourceSchema";
+import { ResourceDB } from "../../../database/models/ResourceSchema";
 
 // Post a Notes Resource
 const createNotes = (req: Request,res: Response): void | undefined => {
