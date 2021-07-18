@@ -3,8 +3,8 @@ import express from "express";
 const app = express();
 import dotenv from "dotenv";
 import bodyParser from "body-parser";
-import { connectNoticeBoardDB } from "./database/dbConnection/NoticeBoard_Connection";
-import { connectResourceDB } from "./database/dbConnection/Resource_Connection";
+import { connectNoticeBoardDB } from "./database/NoticeBoard_Connection";
+import { connectResourceDB } from "./database/Resource_Connection";
 import route from './routes/router'
 
 // Configure the Environment Variables

@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { ResourceDB } from "../../../database/models/ResourceSchema";
+import { ResourceDB } from "../../../models/ResourceSchema";
 
 // Post a Video Resource
 const createVideo = (req: Request,res: Response): void | undefined => {
