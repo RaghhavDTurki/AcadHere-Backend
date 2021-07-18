@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://apis.google.com/js/api.js"></script>
+    <!-- <script src="https://apis.google.com/js/platform.js" async defer></script> -->
+    <title>Login </title>
+</head>
+<body>
+    <button onclick="authenticate().then(loadClient)">authorize and load</button>
+    <button onclick="execute()">execute</button>
+
+    <p id="render"></p>
+
+    <script>
+        gapi.load("client:auth2", function () {
+            gapi.auth2.init({ client_id: "443599361185-af2mdmoteb1q0cueppp0sc86grvjkgmm.apps.googleusercontent.com" });
+        });
+        function loadClient()
+        {
+            gapi.client.setApiKey("AIzaSyAmtECNOaA8YL0mjtIja4Yy9C1QYt0otQw");
+            return gapi.client.load("https://classroom.googleapis.com/$discovery/rest?version=v1")
+            .then(function () { console.log("GAPI client loaded for API"); },
+            function (err) { console.error("Error loading GAPI client for API", err); });
+        }
+        function authenticate() {
+            return gapi.auth2.getAuthInstance()
+                .signIn({ scope: "https://www.googleapis.com/auth/classroom.courses.readonly https://www.googleapis.com/auth/classroom.coursework.me.readonly"})        // Add more scopes to fetch the required data
+                .then(gUser => {
+                    console.log("Signin successfull!\n", gUser.getBasicProfile())  // Basic profile of user
+                    console.log(gUser.getAuthResponse().id_token)   // Id token to send to backend
+                });
+        }
+        // Make sure the client is loaded and sign-in is complete before calling this method.
+        function execute() {
+            gapi.client.classroom.courses.list({        // Get list of all active courses
+                "courseStates": [
+                    "ACTIVE"
+                ]
+            })
+                .then(function (response) {
+                    // Handle the results here (response.result has the parsed body).
+                    let para = document.getElementById("render");
+                    para.innerHTML += response.body;
+                    console.log("Response", response.body);
+                },
+                    function (err) { console.error("Execute error", err); });
+
+            // gapi.client.classroom.courses.courseWork.list({          Get the coursework for a course... Required the course_id
+            //     "courseId": "315275681813"
+            // })
+            //     .then(function (response) {
+            //         // Handle the results here (response.result has the parsed body).
+            //         console.log("Response", response.body);
+            //     },
+            //         function (err) { console.error("Execute error", err); });
+        }
+    </script>
+</body>
+</html>
