@@ -8,6 +8,10 @@
     "start": "npm run build && node build/server.js",
     "dev": "nodemon"
   },
+  "engines": {
+    "node": "16.5.0",
+    "npm": "7.17.0"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
