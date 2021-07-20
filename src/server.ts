@@ -8,7 +8,7 @@ import { connectResourceDB } from "./database/Resource_Connection";
 import route from './routes/router'
 
 // Configure the Environment Variables
-dotenv.config({path:"config.env"});
+dotenv.config();
 
 app.use(bodyParser.json());
 
