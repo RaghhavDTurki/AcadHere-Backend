@@ -4,8 +4,10 @@
   "description": "",
   "main": "server.js",
   "scripts": {
+    "start": "node build/server.js",
+    "postinstall": "tsc",
     "build": "rimraf ./build && tsc",
-    "start": "npm run build && node build/server.js",
+    "start-dev": "npm run build && node build/server.js",
     "dev": "nodemon"
   },
   "engines": {
