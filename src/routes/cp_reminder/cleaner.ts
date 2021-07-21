@@ -24,7 +24,6 @@ let SUPPORTED_WEBSITES = {
 
 export function getCompetitions(data : ClistContest) : boolean
 {
-    let name: string = data.event;
     let website: string = data.resource;
     if(SUPPORTED_WEBSITES.hasOwnProperty(website))
     {
