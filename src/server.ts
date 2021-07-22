@@ -5,13 +5,14 @@ import dotenv from "dotenv";
 import bodyParser from "body-parser";
 import { connectNoticeBoardDB } from "./database/NoticeBoard_Connection";
 import { connectResourceDB } from "./database/Resource_Connection";
+import cookieParser from 'cookie-parser'
 import route from './routes/router'
 
 // Configure the Environment Variables
 dotenv.config();
 
 app.use(bodyParser.json());
-
+app.use(cookieParser());
 app.use('/', route);
 connectNoticeBoardDB();
 connectResourceDB();

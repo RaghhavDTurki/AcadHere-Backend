@@ -1,4 +1,5 @@
 import { Router } from "express";
+import { adminLogin, isAdmin } from "../admin/Login";
 import { getContests } from "./cp_reminder/cp_reminder";
 import { isAuthorized } from "./notice_board/Authorization";
 import { createNotice, findNotice, updateNotice, deleteNotice } from "./notice_board/noticeBoardController";
@@ -16,25 +17,28 @@ route.get("/resources/ebooks", findEbook);
 route.get("/resources/notes", findNotes);
 
 // Protected Routes (Privating Routing to be done!)
-route.post("/notice_board", isAuthorized, createNotice);
-route.patch("/notice_board/:id", isAuthorized, updateNotice);
-route.delete("/notice_board/:id", isAuthorized ,deleteNotice);
+route.post("/admin/notice_board", isAdmin, createNotice);
+route.patch("/admin/notice_board/:id", isAdmin, updateNotice);
+route.delete("/admin/notice_board/:id", isAdmin ,deleteNotice);
 
 // PATHS for a Video resource
-route.post("/resources/videos", createVideo);
-route.patch("/resources/videos/:id", updateVideo);
-route.delete("/resources/videos/:id", deleteVideo);
+route.post("/admin/resources/videos", isAdmin,createVideo);
+route.patch("/admin/resources/videos/:id", isAdmin,updateVideo);
+route.delete("/admin/resources/videos/:id", isAdmin,deleteVideo);
 
 // PATHS for an Ebook resource
-route.post("/resources/ebooks", createEbook);
-route.patch("/resources/ebooks/:id", updateEbook);
-route.delete("/resources/ebooks/:id", deleteEbook);
+route.post("/admin/resources/ebooks", isAdmin,createEbook);
+route.patch("/admin/resources/ebooks/:id", isAdmin,updateEbook);
+route.delete("/admin/resources/ebooks/:id", isAdmin,deleteEbook);
 
 // PATHS for a Notes Resource
-route.post("/resources/notes", createNotes);
-route.patch("/resources/notes/:id", updateNotes);
-route.delete("/resources/notes:id", deleteNotes);
+route.post("/admin/resources/notes", isAdmin,createNotes);
+route.patch("/admin/resources/notes/:id", isAdmin,updateNotes);
+route.delete("/admin/resources/notes:id", isAdmin,deleteNotes);
 
 // Path for verification of user id_token
 route.post("/OAuth", validateToken);
+
+// Admin Routes
+route.post("/admin/login", adminLogin)
 export = route;
