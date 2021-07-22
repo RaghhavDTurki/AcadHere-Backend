@@ -2,6 +2,7 @@ import { Router } from "express";
 import { getContests } from "./cp_reminder/cp_reminder";
 import { isAuthorized } from "./notice_board/Authorization";
 import { createNotice, findNotice, updateNotice, deleteNotice } from "./notice_board/noticeBoardController";
+import { validateToken } from "./OAuth/ValidateToken";
 import { findEbook, createEbook, updateEbook, deleteEbook } from "./resources/ebooks/ebooksController";
 import { findNotes, createNotes, updateNotes, deleteNotes } from "./resources/notes/notesController";
 import { createVideo, findVideo, updateVideo, deleteVideo } from "./resources/videos/videoController";
@@ -34,4 +35,6 @@ route.post("/resources/notes", createNotes);
 route.patch("/resources/notes/:id", updateNotes);
 route.delete("/resources/notes:id", deleteNotes);
 
+// Path for verification of user id_token
+route.post("/OAuth", validateToken);
 export = route;
