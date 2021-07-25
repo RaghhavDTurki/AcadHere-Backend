@@ -40,7 +40,7 @@ const isTomorrow = (someDate: string) : boolean => {
 }
 
 const getContests = (req: Request, res: Response): void => {
-    axios.get(`https://clist.by/api/v2/contest/?limit=20&start__gt=${query_dateToString}&order_by=start`,auth)
+    axios.get(`https://clist.by/api/v2/contest/?limit=50&start__gt=${query_dateToString}&order_by=start`,auth)
     .then(function(response): void {
         let data: ClistContest[] = response.data.objects;
         let contest_list:ContestInterface[]  = [];
