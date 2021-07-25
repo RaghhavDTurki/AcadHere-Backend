@@ -1,3 +1,5 @@
+import { ContestInterface, CONTEST } from "./Contest_Object";
+
 export interface ClistContest {
     "id": number,
     "resource": string,
@@ -30,4 +32,22 @@ export function getCompetitions(data : ClistContest) : boolean
         return true;
     }
     return false;
+}
+
+export function paginate(pageNumber: number, contestList: ContestInterface[]): ContestInterface[]
+{
+    const perPage: number = 10;
+    const totalContest: number = contestList.length;
+    const maxPageCount = Math.ceil(contestList.length / perPage);  
+    if(pageNumber < 1)
+    {
+        pageNumber = 1;
+    }
+    
+    if(pageNumber > maxPageCount)
+    {
+        pageNumber = maxPageCount;
+    }
+    let paginatedContest: ContestInterface[] = contestList.slice((pageNumber - 1) * perPage, pageNumber * perPage);
+    return paginatedContest;
 }

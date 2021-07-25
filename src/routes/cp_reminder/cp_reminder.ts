@@ -1,9 +1,7 @@
 import axios from "axios";
 import { Request, Response } from "express";
-import { ContestInterface } from "./Contest_Object";
-import { CONTEST } from "./Contest_Object";
-import { ClistContest } from "./cleaner";
-import { getCompetitions } from "./cleaner";
+import { ContestInterface, CONTEST } from "./Contest_Object";
+import { ClistContest, getCompetitions, paginate } from "./helper";
 
 const auth = {
     headers : {"Authorization" : "ApiKey " + process.env.user + ":" + process.env.API_KEY}
@@ -40,7 +38,12 @@ const isTomorrow = (someDate: string) : boolean => {
 }
 
 const getContests = (req: Request, res: Response): void => {
-    axios.get(`https://clist.by/api/v2/contest/?limit=50&start__gt=${query_dateToString}&order_by=start`,auth)
+    if(!req.query.pg)
+    {
+        res.status(400).send("Send page number!");
+        return;
+    }
+    axios.get(`https://clist.by/api/v2/contest/?limit=200&start__gt=${query_dateToString}&order_by=start`,auth)
     .then(function(response): void {
         let data: ClistContest[] = response.data.objects;
         let contest_list:ContestInterface[]  = [];
@@ -70,8 +73,13 @@ const getContests = (req: Request, res: Response): void => {
                 contest_list.push(new_contest);
             }
         }
-        res.send(contest_list);
-        console.log(contest_list.length)
+        const page = parseInt(<string>req.query.pg, 10);
+        const paginatedContest: ContestInterface[] = paginate(page, contest_list);
+        const limit: number = Math.ceil(contest_list.length / 10);
+        res.json({
+            "maxPages" : limit,
+            "contest": paginatedContest
+        });
     })
     .catch(err => console.error(err));
 }
