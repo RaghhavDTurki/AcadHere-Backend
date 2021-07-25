@@ -15,8 +15,8 @@ const isAuthorized = async (req:Request, res: Response, next: NextFunction) => {
         return res.status(401).send("Unauthorised!");
     }
 
-    const domain: string = email.split("@")[1];
-    if(domain != "iiitkota.ac.in")
+    const emailDomain: string = email.split("@")[1];
+    if(emailDomain != "iiitkota.ac.in")
     {
         return res.status(401).send("Unauthorised!");
     }

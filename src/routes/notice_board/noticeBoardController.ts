@@ -71,7 +71,7 @@ const updateNotice = (req: Request, res: Response): Response | void => {
     .then(data => {
         if(!data)
             {
-                res.status(404).send({ message : `Cannot Update Message with ${id}. Maybe Message not found!`})
+                res.status(404).send({ message : `Cannot Update Message with ${id}. Message not found!`})
             }
             else
             {
