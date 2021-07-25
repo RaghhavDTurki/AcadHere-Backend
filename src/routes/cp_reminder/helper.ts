@@ -36,7 +36,7 @@ export function getCompetitions(data : ClistContest) : boolean
 
 export function paginate(pageNumber: number, contestList: ContestInterface[]): ContestInterface[]
 {
-    const perPage: number = 10;
+    const perPage: number = 20;
     const totalContest: number = contestList.length;
     const maxPageCount = Math.ceil(contestList.length / perPage);  
     if(pageNumber < 1)

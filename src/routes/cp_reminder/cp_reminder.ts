@@ -75,7 +75,7 @@ const getContests = (req: Request, res: Response): void => {
         }
         const page = parseInt(<string>req.query.pg, 10);
         const paginatedContest: ContestInterface[] = paginate(page, contest_list);
-        const limit: number = Math.ceil(contest_list.length / 10);
+        const limit: number = Math.ceil(contest_list.length / 20);
         res.json({
             "maxPages" : limit,
             "contest": paginatedContest
