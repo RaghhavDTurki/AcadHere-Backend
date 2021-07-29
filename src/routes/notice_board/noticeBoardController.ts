@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { NoticeDb } from "../../models/NoticeSchema";
+import { paginateNoticeBoard } from "./Pagination";
 
 const createNotice = (req: Request, res: Response): void => {
     // Validate Request
@@ -29,7 +30,7 @@ const createNotice = (req: Request, res: Response): void => {
     });
 }
 
-const findNotice = (req: Request, res: Response): void => {
+const findNotice = async (req: Request, res: Response): Promise<void> => {
     if(req.query.id)
     {
         const id = <string>req.query.id;
@@ -47,13 +48,20 @@ const findNotice = (req: Request, res: Response): void => {
     }
     else
     {
-        NoticeDb.find()
-        .then(messages => {
-            res.send(messages);
-        })
-        .catch(err => {
-            res.status(500).send({ message : err.message || "Error Occurred while retriving messages" });
-        })
+        if(!req.query.pg)
+        {
+            res.status(400).send("Send page number!");
+            return;
+        }
+        let totalMessages:number = await NoticeDb.countDocuments();
+        let maxPages: number = Math.ceil(totalMessages / 20);
+        let pgNumber: number = parseInt(<string>req.query.pg, 10);
+        paginateNoticeBoard(pgNumber, 20)
+        .then(paginatedData => res.status(200).json({
+            "maxPages" : maxPages,
+            "messages": paginatedData
+        }))
+        .catch(error => console.error(error));
     }
 };
 

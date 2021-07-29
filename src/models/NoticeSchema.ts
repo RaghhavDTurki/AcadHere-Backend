@@ -1,6 +1,6 @@
 import { Schema, model } from 'mongoose';
 
-interface NoticeInterface{
+export interface NoticeInterface{
     Message: string;
     Post_Time: Date;
     Status: string;
