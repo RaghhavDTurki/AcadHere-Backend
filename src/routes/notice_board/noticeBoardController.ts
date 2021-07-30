@@ -11,12 +11,20 @@ const createNotice = (req: Request, res: Response): void => {
         return;
     }
 
+    if(!req.body.Message && !req.body.Status && !req.body.Heading)
+    {
+        res.status(400).send("Please fill the required fields!");
+        return;
+    }
     //New Message
     let time: Date = new Date();
     const new_message = new NoticeDb({
+        Heading: req.body.Heading,
         Message : req.body.Message,
         Post_time : time,
         Status : req.body.Status,
+        Link: (req.body.Link)?req.body.Link:null,
+        Other: (req.body.Other)?req.body.Other:null,
     })
 
     new_message.save()
