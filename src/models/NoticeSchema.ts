@@ -3,7 +3,6 @@ import { Schema, model } from 'mongoose';
 export interface NoticeInterface{
     Heading: string,
     Message: string;
-    Link?: string,
     Other?: string,
     Post_Time: Date;
     Status: string;
@@ -18,9 +17,6 @@ let schema = new Schema<NoticeInterface>({
     Message:{
         type:String,
         required:true
-    },
-    Link:{
-        type:String,
     },
     Other:{
         type:String,

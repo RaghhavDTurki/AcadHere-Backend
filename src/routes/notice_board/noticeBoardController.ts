@@ -23,7 +23,6 @@ const createNotice = (req: Request, res: Response): void => {
         Message : req.body.Message,
         Post_time : time,
         Status : req.body.Status,
-        Link: (req.body.Link)?req.body.Link:null,
         Other: (req.body.Other)?req.body.Other:null,
     })
 
