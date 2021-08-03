@@ -3,7 +3,7 @@ import { Schema, model } from 'mongoose';
 interface ResourceInterface{
     Url: string
     Post_Time: Date
-    Subject_Code: string
+    Subject_Code?: string
     Message: string
     Resource_Type: string
 }
@@ -20,7 +20,6 @@ let resourceSchema = new Schema<ResourceInterface>({
     },
     Subject_Code:{
         type:String,
-        required:true
     },
     Message:{
         type:String,

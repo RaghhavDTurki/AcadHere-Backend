@@ -11,8 +11,8 @@
     "dev": "nodemon"
   },
   "engines": {
-    "node": "16.5.0",
-    "npm": "7.20.2"
+    "node": "16.6.0",
+    "npm": "7.20.3"
   },
   "keywords": [],
   "author": "",

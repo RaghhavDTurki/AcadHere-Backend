@@ -3,21 +3,21 @@ import { Request, Response } from "express";
 import { ContestInterface, CONTEST } from "./Contest_Object";
 import { ClistContest, getCompetitions, paginate } from "./helper";
 
-const auth = {
-    headers : {"Authorization" : "ApiKey " + process.env.user + ":" + process.env.API_KEY}
+export const auth = {
+    headers : {"Authorization" : "ApiKey " + "RDT" + ":" + "1f31dc825bce80ce5e7d981dbca6385f59232b19"}
 }
 
 
 let query_date: Date = new Date();
 let query_dateToString: string = query_date.toISOString();
 
-const ConvertUTCtoIST = (date_string: string) : string => {
+export const ConvertUTCtoIST = (date_string: string) : string => {
     let IST_time: Date = new Date(Date.parse(date_string));
     let IST_Time_Stringify: string = IST_time.toString();
     return IST_Time_Stringify;
 }
 
-const isToday = (someDate: string) : boolean => {
+export const isToday = (someDate: string) : boolean => {
     const today: Date = new Date();
     let query_date: Date = new Date(Date.parse(someDate)); 
     return query_date.getDate() == today.getDate() &&
@@ -25,7 +25,7 @@ const isToday = (someDate: string) : boolean => {
     query_date.getFullYear() == today.getFullYear()
 }
 
-const isTomorrow = (someDate: string) : boolean => {
+export const isTomorrow = (someDate: string) : boolean => {
     const contest_Day: Date = new Date(Date.parse(someDate));
     const today: Date = new Date();
     const tomorrow: Date = new Date(today);
@@ -81,6 +81,9 @@ const getContests = (req: Request, res: Response): void => {
             "contest": paginatedContest
         });
     })
-    .catch(err => console.error(err));
+    .catch(err => {
+        res.sendStatus(500);
+        console.error(err);
+    });
 }
 export { getContests }
