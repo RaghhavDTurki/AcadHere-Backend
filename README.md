@@ -31,31 +31,39 @@ Make a GET request to ```http://localhost:8080/cp_reminder/```
 
 - Resources Schema: 
 	1. Url(Required)
-	2. Subject_Code(Required)
+	2. Subject_Code(Optional)
 	3. Message(Required)
-	4. Resources_Type( Should be either Video, Notes or Ebook )(Required)
+	4. Resources_Type( Should be either Video, Notes or Ebook or Course )(Required)
 
 
 3. To Access the Video Resources API 
     Go to ```http://localhost:8080/resources/videos/``` 
-    * To POST a video, make a POST request to ```http://localhost:8080/resources/videos/```
+    * To POST a video, make a POST request to ```http://localhost:8080/admin/resources/videos/```
     * To GET all videos, make a GET request to ```http://localhost:8080/resources/videos/```
     * To GET a single video, make a GET request, pass the id as the parameter, for example ```http://localhost:8080/resources/videos/?id=TheVideoID```
-    * To UPDATE a single video, make a PATCH request to ```http://localhost:8080/resources/videos/TheVideoID```
-    * To DELETE a single video, make a DELETE request to ```http://localhost:8080/resources/videos/TheVideoID```
+    * To UPDATE a single video, make a PATCH request to ```http://localhost:8080/admin/resources/videos/TheVideoID```
+    * To DELETE a single video, make a DELETE request to ```http://localhost:8080/admin/resources/videos/TheVideoID```
 
 4. To Access the Notes Resources API 
     Go to ```http://localhost:8080/resources/notes/``` 
-    * To POST a notes resource, make a POST request to ```http://localhost:8080/resources/notes/```
+    * To POST a notes resource, make a POST request to ```http://localhost:8080/admin/resources/notes/```
     * To GET all notes, make a GET request to ```http://localhost:8080/resources/notes/```
     * To GET a single notes resource, make a GET request, pass the id as the parameter, for example ```http://localhost:8080/resources/notes/?id=TheNotesID```
-    * To UPDATE a single notes resource, make a PATCH request to ```http://localhost:8080/resources/notes/TheNotesID```
-    * To DELETE a single notes resource, make a DELETE request to ```http://localhost:8080/resources/notes/TheNotesID```
+    * To UPDATE a single notes resource, make a PATCH request to ```http://localhost:8080/admin/resources/notes/TheNotesID```
+    * To DELETE a single notes resource, make a DELETE request to ```http://localhost:8080/admin/resources/notes/TheNotesID```
 
 5. To Access the Ebooks Resources API 
     Go to ```http://localhost:8080/resources/ebooks/``` 
-    * To POST an ebooks resource, make a POST request to ```http://localhost:8080/resources/ebook/```
+    * To POST an ebooks resource, make a POST request to ```http://localhost:8080/admin/resources/ebook/```
     * To GET all ebooks, make a GET request to ```http://localhost:8080/resources/ebooks/```
     * To GET a single ebook resource, make a GET request, pass the id as the parameter, for example ```http://localhost:8080/resources/ebooks/?id=TheEbooksID```
-    * To UPDATE a single ebooks resource, make a PATCH request to ```http://localhost:8080/resources/ebooks/TheEbooksID```
-    * To DELETE a single ebooks resource, make a DELETE request to ```http://localhost:8080/resources/ebooks/TheEbooksID```
+    * To UPDATE a single ebooks resource, make a PATCH request to ```http://localhost:8080/admin/resources/ebooks/TheEbooksID```
+    * To DELETE a single ebooks resource, make a DELETE request to ```http://localhost:8080/admin/resources/ebooks/TheEbooksID```
+
+6. To Access the Courses Resources API 
+Go to ```http://localhost:8080/resources/courses/``` 
+* To POST an ebooks resource, make a POST request to ```http://localhost:8080/admin/resources/courses/```
+* To GET all ebooks, make a GET request to ```http://localhost:8080/resources/courses/```
+* To GET a single ebook resource, make a GET request, pass the id as the parameter, for example ```http://localhost:8080/resources/courses/?id=TheCourseID```
+* To UPDATE a single ebooks resource, make a PATCH request to ```http://localhost:8080/admin/resources/courses/TheCourseID```
+* To DELETE a single ebooks resource, make a DELETE request to ```http://localhost:8080/admin/resources/courses/TheCourseID```
