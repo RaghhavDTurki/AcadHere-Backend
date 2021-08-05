@@ -20,8 +20,6 @@ let SUPPORTED_WEBSITES = {
     'codingcompetitions.withgoogle.com':'',
     'facebook.com/hackercup':'',
     'leetcode.com':'',
-    // devfolio
-    // hackerearth
 }
 
 export function getCompetitions(data : ClistContest) : boolean

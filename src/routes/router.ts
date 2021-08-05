@@ -1,8 +1,7 @@
-// import { getDare2Compete } from './hackathons/dare2compete.provider';
-// import { getHackathons } from './hackathons/hackathon.controller';
 import { Router } from "express";
 import { adminLogin, isAdmin } from "../admin/Login";
 import { getContests } from "./cp_reminder/cp_reminder";
+import { getHackathons } from './hackathons/hackathon.controller';
 import { isAuthorized } from "./notice_board/Authorization";
 import { createNotice, findNotice, updateNotice, deleteNotice } from "./notice_board/noticeBoardController";
 import { validateToken } from "./OAuth/ValidateToken";
@@ -14,7 +13,7 @@ const route: Router = Router();
 
 // Common Routes
 route.get("/cp_reminder", getContests);
-// route.get("/hackathons", getDare2Compete);
+route.get("/hackathons", getHackathons);
 route.get("/notice_board",isAuthorized ,findNotice);
 route.get("/resources/videos", findVideo);
 route.get("/resources/ebooks", findEbook);
