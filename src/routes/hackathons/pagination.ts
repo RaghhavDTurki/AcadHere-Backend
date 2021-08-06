@@ -1,7 +1,7 @@
 import { HackathonInterface } from './hackathon.controller';
 
 
-export function paginate(pageNumber: number, contestList: HackathonInterface[]): HackathonInterface[]
+export function paginate(pageNumber: number, contestList: HackathonInterface[])
 {
     const perPage: number = 20;
     const maxPageCount = Math.ceil(contestList.length / perPage);  
@@ -15,5 +15,9 @@ export function paginate(pageNumber: number, contestList: HackathonInterface[]):
         pageNumber = maxPageCount;
     }
     let paginatedHackathon: HackathonInterface[] = contestList.slice((pageNumber - 1) * perPage, pageNumber * perPage);
-    return paginatedHackathon;
+    return {
+        "maxPages" : maxPageCount,
+        "contest": paginatedHackathon
+    }
+    // return paginatedHackathon;
 }

@@ -1,3 +1,4 @@
+import { redisClient } from './../../server';
 import { Request, Response } from "express";
 import { getDevPost } from './devpost.provider';
 import { getDare2Compete } from './dare2compete.provider';
@@ -38,15 +39,29 @@ export const getHackathons = async (req: Request, res: Response): Promise<void> 
         res.status(400).send("Send page number!");
         return;
     }
+    const page = parseInt(<string>req.query.pg, 10);
+    
+    // Check if cached data exists 
+    let cacheEntry = await redisClient.get('Hackathons')
+
+    // If we have a cache hit
+    if(cacheEntry)
+    {
+        // return that entry
+        let Entry: HackathonInterface[] = JSON.parse(cacheEntry);
+        const paginatedResponse = paginate(page, Entry)
+        res.send(paginatedResponse);
+        return;
+    }
+    
+    // Otherwise get data from api
     getAllHackathons()
     .then(Hackathons => {
-        const page = parseInt(<string>req.query.pg, 10);
-        const paginatedHackathon: HackathonInterface[] = paginate(page, Hackathons);
-        const limit: number = Math.ceil(Hackathons.length / 20);
-        res.json({
-            "maxPages" : limit,
-            "contest": paginatedHackathon
-        });
+        const paginatedResponse = paginate(page, Hackathons);
+
+        // Enter key in cache
+        redisClient.set('Hackathons', JSON.stringify(Hackathons), 'EX', 7200);
+        res.send(paginatedResponse);
     })
     .catch(error => {
         console.error(error);

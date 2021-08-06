@@ -1,3 +1,4 @@
+import { redisClient } from './../../server';
 import axios from "axios";
 import { Request, Response } from "express";
 import { ContestInterface, CONTEST } from "./Contest_Object";
@@ -37,12 +38,30 @@ export const isTomorrow = (someDate: string) : boolean => {
     else return false;
 }
 
-const getContests = (req: Request, res: Response): void => {
+const getContests = async (req: Request, res: Response): Promise<void> => {
     if(!req.query.pg)
     {
         res.status(400).send("Send page number!");
         return;
     }
+
+    const page = parseInt(<string>req.query.pg, 10);
+
+    // check if cached data exists
+    let cacheEntry = await redisClient.get('CP-Reminder');
+
+    // If we have a cache hit
+    if(cacheEntry)
+    {
+        // return that entry
+        let Entry: ContestInterface[] = JSON.parse(cacheEntry);
+        const paginatedResponse = paginate(page, Entry)
+        res.send(paginatedResponse);
+        return;
+    }
+
+
+    // otherwise call the api for response
     axios.get(`https://clist.by/api/v2/contest/?limit=200&start__gt=${query_dateToString}&order_by=start`,auth)
     .then(function(response): void {
         let data: ClistContest[] = response.data.objects;
@@ -53,7 +72,7 @@ const getContests = (req: Request, res: Response): void => {
             {
                 let new_contest: ContestInterface = Object.assign({}, CONTEST);
                 new_contest.event_name = data[i].event;
-                new_contest.start_time = ConvertUTCtoIST(data[i].start);
+                new_contest.start_time = data[i].start;
                 new_contest.duration = data[i].duration;
                 new_contest.resource_website = data[i].resource;
                 new_contest.contest_url = data[i].href;
@@ -73,17 +92,17 @@ const getContests = (req: Request, res: Response): void => {
                 contest_list.push(new_contest);
             }
         }
-        const page = parseInt(<string>req.query.pg, 10);
-        const paginatedContest: ContestInterface[] = paginate(page, contest_list);
-        const limit: number = Math.ceil(contest_list.length / 20);
-        res.json({
-            "maxPages" : limit,
-            "contest": paginatedContest
-        });
+        const paginatedResponse = paginate(page, contest_list);
+
+        // Store key in redis cloud
+        redisClient.set('CP-Reminder', JSON.stringify(contest_list), 'EX', 7200);
+
+        res.send(paginatedResponse)
     })
     .catch(err => {
         res.sendStatus(500);
         console.error(err);
     });
 }
+
 export { getContests }

@@ -12,7 +12,7 @@
   },
   "engines": {
     "node": "16.6.1",
-    "npm": "7.20.3"
+    "npm": "7.20.4"
   },
   "keywords": [],
   "author": "",
@@ -20,6 +20,7 @@
   "devDependencies": {
     "@types/bcryptjs": "^2.4.2",
     "@types/cookie-parser": "^1.4.2",
+    "@types/ioredis": "^4.26.7",
     "@types/jsonwebtoken": "^8.5.4",
     "@types/mongoose": "^5.11.97",
     "@types/node": "^16.3.2",
@@ -38,6 +39,7 @@
     "entities": "^2.2.0",
     "express": "^4.17.1",
     "google-auth-library": "^7.3.0",
+    "ioredis": "^4.27.7",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.13.2",
     "ts-node": "^10.1.0"
