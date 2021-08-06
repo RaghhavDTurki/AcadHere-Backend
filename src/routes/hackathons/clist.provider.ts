@@ -37,7 +37,7 @@ export async function getCLISTHackathons(): Promise<HackathonInterface[]>
             if(!(new Date(data[i].start) < beforeDate())) continue;
             let new_hackathon: HackathonInterface = Object.assign({}, Hackathons);
             new_hackathon.name = data[i].event;
-            new_hackathon.reg_start = ConvertUTCtoIST(data[i].start);
+            new_hackathon.reg_start = data[i].start;
             new_hackathon.reg_end = data[i].end;
             new_hackathon.host = data[i].resource;
             new_hackathon.site = data[i].href;
