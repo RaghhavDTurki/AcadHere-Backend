@@ -5,7 +5,7 @@ import { ContestInterface, CONTEST } from "./Contest_Object";
 import { ClistContest, getCompetitions, paginate } from "./helper";
 
 export const auth = {
-    headers : {"Authorization" : "ApiKey " + "RDT" + ":" + "1f31dc825bce80ce5e7d981dbca6385f59232b19"}
+    headers : {"Authorization" : "ApiKey " + process.env.user + ":" + process.env.API_KEY}
 }
 
 
