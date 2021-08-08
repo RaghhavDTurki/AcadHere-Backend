@@ -11,7 +11,7 @@ const createNotice = (req: Request, res: Response): void => {
         return;
     }
 
-    if(!req.body.Message && !req.body.Status && !req.body.Heading)
+    if(!req.body.Message || !req.body.Status || !req.body.Heading)
     {
         res.status(400).send("Please fill the required fields!");
         return;
@@ -68,7 +68,10 @@ const findNotice = async (req: Request, res: Response): Promise<void> => {
             "maxPages" : maxPages,
             "messages": paginatedData
         }))
-        .catch(error => console.error(error));
+        .catch(error => {
+            console.error(error)
+            res.status(500).send(error);
+        });
     }
 };
 

@@ -42,7 +42,7 @@ export const getHackathons = async (req: Request, res: Response): Promise<void> 
     const page = parseInt(<string>req.query.pg, 10);
     
     // Check if cached data exists 
-    let cacheEntry = await redisClient.get('Hackathons')
+    let cacheEntry: string | null = await redisClient.get('Hackathons')
 
     // If we have a cache hit
     if(cacheEntry)
