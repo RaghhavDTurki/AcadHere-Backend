@@ -3,7 +3,6 @@ import axios, { AxiosResponse } from 'axios';
 import cheerio from 'cheerio'
 import { beforeDate } from './DateUtil';
 import { decodeHTML } from 'entities';
-import { ConvertUTCtoIST } from "../cp_reminder/cp_reminder";
 
 
 const HTMLPartToTextPart = (HTMLPart: string) => (
@@ -54,8 +53,8 @@ export const getDevPost = async (): Promise<HackathonInterface[]> => {
                 desc: HTMLPartToTextPart(decodeHTML(details.description).replace(/<[^>]+>/g, '')),
                 host: 'devpost.com',
                 site: e.url,
-                reg_start: ConvertUTCtoIST(details.startDate),
-                reg_end: ConvertUTCtoIST(details.endDate)
+                reg_start: details.startDate,
+                reg_end: details.endDate
                 
             };
         })

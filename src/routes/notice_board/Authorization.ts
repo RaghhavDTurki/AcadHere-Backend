@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 
 const isAuthorized = async (req:Request, res: Response, next: NextFunction) => {
-    const email = req.headers.email as string | undefined;
+    const email = req.body.email as string | undefined;
     
     if(email == null || email == "")
     {
