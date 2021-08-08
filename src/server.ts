@@ -1,16 +1,20 @@
+import { rateLimiterUsingThirdParty } from './middleware/expressRateLimiter';
 import express from "express";
 import ioredis from 'ioredis'
-const app = express();
 import dotenv from "dotenv";
 import bodyParser from "body-parser";
+const app = express();
 import { connectNoticeBoardDB } from "./database/NoticeBoard_Connection";
 import { connectResourceDB } from "./database/Resource_Connection";
+import { connectTimeTableDB } from "./database/TimeTable_Connection";
 import cookieParser from 'cookie-parser'
 import route from './routes/router'
-import { connectTimeTableDB } from "./database/TimeTable_Connection";
 
 // Configure the Environment Variables
 dotenv.config();
+
+// SET UP Rate Limiting
+app.use(rateLimiterUsingThirdParty)
 
 app.use(bodyParser.json());
 app.use(cookieParser());
