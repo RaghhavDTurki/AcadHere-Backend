@@ -52,3 +52,14 @@ export function paginate(pageNumber: number, contestList: ContestInterface[])
     }
     // return paginatedContest;
 }
+
+const now = new Date();
+
+export const afterDate = () =>
+  new Date(now.getFullYear(), now.getMonth(), now.getDate());
+
+export const beforeDate = () =>
+  new Date(afterDate().setDate(afterDate().getDate() + 14));
+
+export const preserveTill = () =>
+  new Date(afterDate().setDate(afterDate().getDate() - 5));

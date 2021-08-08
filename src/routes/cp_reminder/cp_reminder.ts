@@ -2,21 +2,15 @@ import { redisClient } from './../../server';
 import axios from "axios";
 import { Request, Response } from "express";
 import { ContestInterface, CONTEST } from "./Contest_Object";
-import { ClistContest, getCompetitions, paginate } from "./helper";
+import { beforeDate, ClistContest, getCompetitions, paginate } from "./helper";
 
 export const auth = {
-    headers : {"Authorization" : "ApiKey " + process.env.user + ":" + process.env.API_KEY}
+    headers : {"Authorization" : "ApiKey " + "RDT" + ":" + "1f31dc825bce80ce5e7d981dbca6385f59232b19"}
 }
-
 
 let query_date: Date = new Date();
 let query_dateToString: string = query_date.toISOString();
 
-export const ConvertUTCtoIST = (date_string: string) : string => {
-    let IST_time: Date = new Date(Date.parse(date_string));
-    let IST_Time_Stringify: string = IST_time.toString();
-    return IST_Time_Stringify;
-}
 
 export const isToday = (someDate: string) : boolean => {
     const today: Date = new Date();
@@ -70,6 +64,7 @@ const getContests = async (req: Request, res: Response): Promise<void> => {
         {
             if(getCompetitions(data[i]))
             {
+                if(new Date(data[i].start) > beforeDate())continue;
                 let new_contest: ContestInterface = Object.assign({}, CONTEST);
                 new_contest.event_name = data[i].event;
                 new_contest.start_time = data[i].start;

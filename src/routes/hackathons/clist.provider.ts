@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from "axios";
-import { auth, ConvertUTCtoIST, isToday, isTomorrow } from "../cp_reminder/cp_reminder";
+import { auth } from "../cp_reminder/cp_reminder";
 import { ClistContest } from "../cp_reminder/helper";
 import { beforeDate } from "./DateUtil";
 import { HackathonInterface, Hackathons } from "./hackathon.controller";

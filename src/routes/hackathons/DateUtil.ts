@@ -1,4 +1,3 @@
-
 const now = new Date();
 
 const afterDate = () =>
