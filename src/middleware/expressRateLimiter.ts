@@ -6,7 +6,7 @@ import ioredis from 'ioredis';
 export const rateLimiterUsingThirdParty = rateLimter({
     store: new RedisStore({
         client: redisClient,
-        redisURL: <string>process.env.REDIS_HOSTNAME + <string>process.env.REDIS_PORT
+        redisURL: <string>process.env.REDIS_HOSTNAME + ":" + <string>process.env.REDIS_PORT
     }),
     max: 300,
     windowMs: 60 * 60 * 1000,   // 1 hour in milliseconds
