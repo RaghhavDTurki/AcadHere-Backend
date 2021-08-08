@@ -1,10 +1,12 @@
 import { redisClient } from './../server';
 import rateLimter from 'express-rate-limit';
 import RedisStore from 'rate-limit-redis';
+import ioredis from 'ioredis';
 
 export const rateLimiterUsingThirdParty = rateLimter({
     store: new RedisStore({
-        client: redisClient
+        client: redisClient,
+        redisURL: <string>process.env.REDIS_HOSTNAME + <string>process.env.REDIS_PORT
     }),
     max: 300,
     windowMs: 60 * 60 * 1000,   // 1 hour in milliseconds
