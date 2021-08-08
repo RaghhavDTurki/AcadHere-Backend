@@ -9,6 +9,9 @@ import { findEbook, createEbook, updateEbook, deleteEbook } from "./resources/eb
 import { findNotes, createNotes, updateNotes, deleteNotes } from "./resources/notes/notesController";
 import { createVideo, findVideo, updateVideo, deleteVideo } from "./resources/videos/videoController";
 import { createCourse, deleteCourse, findCourse, updateCourse } from './resources/courses/coursesController';
+import { createSlot, deleteTimeTable, getTimeTable, updateTimeTable } from "./timetable/timetableController";
+
+
 const route: Router = Router();
 
 // Common Routes
@@ -19,7 +22,9 @@ route.get("/resources/videos", findVideo);
 route.get("/resources/ebooks", findEbook);
 route.get("/resources/notes", findNotes);
 route.get("/resources/courses", findCourse);
+route.get("/timetable", getTimeTable)
 
+// PATHS for Notice Board
 route.post("/admin/notice_board", isAdmin, createNotice);
 route.patch("/admin/notice_board/:id", isAdmin, updateNotice);
 route.delete("/admin/notice_board/:id", isAdmin ,deleteNotice);
@@ -37,14 +42,19 @@ route.delete("/admin/resources/ebooks/:id", isAdmin,deleteEbook);
 // PATHS for a Notes Resource
 route.post("/admin/resources/notes", isAdmin,createNotes);
 route.patch("/admin/resources/notes/:id", isAdmin,updateNotes);
-route.delete("/admin/resources/notes:id", isAdmin,deleteNotes);
+route.delete("/admin/resources/notes/:id", isAdmin,deleteNotes);
 
 // PATHS for a Course Resource
 route.post("/admin/resources/courses", isAdmin, createCourse);
 route.patch("/admin/resources/courses/:id", isAdmin,updateCourse);
-route.delete("/admin/resources/courses:id", isAdmin, deleteCourse);
+route.delete("/admin/resources/courses/:id", isAdmin, deleteCourse);
 
-// Path for verification of user id_token
+// PATHS for Time Table
+route.post("/admin/timetable", isAdmin, createSlot);
+route.patch("/admin/timetable/:id", isAdmin,updateTimeTable);
+route.delete("/admin/timetable/:id", isAdmin, deleteTimeTable);
+
+// PATH for verification of user id_token
 route.post("/OAuth", validateToken);
 
 // Admin Routes

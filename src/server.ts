@@ -7,6 +7,7 @@ import { connectNoticeBoardDB } from "./database/NoticeBoard_Connection";
 import { connectResourceDB } from "./database/Resource_Connection";
 import cookieParser from 'cookie-parser'
 import route from './routes/router'
+import { connectTimeTableDB } from "./database/TimeTable_Connection";
 
 // Configure the Environment Variables
 dotenv.config();
@@ -14,15 +15,17 @@ dotenv.config();
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use('/', route);
+
+// Connect to MongoDB
 connectNoticeBoardDB();
 connectResourceDB();
+connectTimeTableDB();
 
 // Set up Redis Client
 export const redisClient = new ioredis({
     host: <string>process.env.REDIS_HOSTNAME,
     port: parseInt(<string>process.env.REDIS_PORT, 10),
     password: <string>process.env.REDIS_PASSWORD,
-
 });
 
 redisClient.on('error', err => {
