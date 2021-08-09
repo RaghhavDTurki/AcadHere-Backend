@@ -1,3 +1,4 @@
+import { sendMail } from './contactUs/contactUsController';
 import { Router } from "express";
 import { adminLogin, isAdmin } from "../admin/Login";
 import { getContests } from "./cp_reminder/cp_reminder";
@@ -23,6 +24,7 @@ route.get("/resources/ebooks", findEbook);
 route.get("/resources/notes", findNotes);
 route.get("/resources/courses", findCourse);
 route.get("/timetable", getTimeTable)
+route.post("/contactUs", sendMail)
 
 // PATHS for Notice Board
 route.post("/admin/notice_board", isAdmin, createNotice);
