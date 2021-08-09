@@ -1,3 +1,4 @@
+import { limiter } from './middleware/rateLimiter';
 import express from "express";
 import ioredis from 'ioredis'
 import cors from 'cors'
@@ -13,6 +14,7 @@ import { connectTimeTableDB } from "./database/TimeTable_Connection";
 // Configure the Environment Variables
 dotenv.config();
 app.use(cors());
+app.use(limiter);
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use('/', route);
