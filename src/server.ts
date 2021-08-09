@@ -28,7 +28,7 @@ connectTimeTableDB();
 export const redisClient = new ioredis({
     host: <string>process.env.REDIS_HOSTNAME,
     port: parseInt(<string>process.env.REDIS_PORT, 10),
-    password: <string>process.env.REDIS_PASSWORD,
+    password: <string>process.env.REDIS_PASSWORD
 });
 
 redisClient.on('error', err => {

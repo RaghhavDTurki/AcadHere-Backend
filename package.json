@@ -48,6 +48,7 @@
     "ioredis": "^4.27.7",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.13.2",
+    "rate-limit-mongo": "^2.3.1",
     "rate-limit-redis": "^2.1.0",
     "redis": "^3.1.2",
     "ts-node": "^10.1.0"
