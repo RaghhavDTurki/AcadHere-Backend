@@ -17,6 +17,7 @@ dotenv.config();
 app.use(cors({
     origin: [`https://acadhere.vercel.app/`],
     credentials: true,
+    preflightContinue: true
 }));
 app.use(limiter);
 app.use(bodyParser.json());
