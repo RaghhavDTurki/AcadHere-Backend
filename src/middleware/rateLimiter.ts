@@ -6,7 +6,7 @@ import redis from 'redis'
 export const limiter = RateLimit({
     store: new RedisStore({
         client: redis.createClient({
-            host: "redis-18153.c212.ap-south-1-1.ec2.cloud.redislabs.com",
+            host: <string>process.env.REDIS_HOSTNAME,
             port: parseInt(<string>process.env.REDIS_PORT, 10),
             password: <string>process.env.REDIS_PASSWORD
         })
