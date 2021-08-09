@@ -21,7 +21,7 @@ export const sendMail = (req: Request, res: Response) => {
 
     let mailOptions = {
         from : 'acadhereapp@gmail.com',
-        to: '2020kucp1065@iiitkota.ac.in',
+        to: '2020kucp1065@iiitkota.ac.in,2020kucp1023@iiitkota.ac.in,2020kucp1096@iiitkota.ac.in,2020kucp1138@iiitkota.ac.in,2020kucp1094iiitkota.ac.in ',
         subject: heading,
         text: message
     }
