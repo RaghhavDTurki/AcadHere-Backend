@@ -50,22 +50,22 @@ redisClient.on('error', err => {
 //     return await redisClient.del(key)
 // }
 
-// const RedisStore = connectRedis(session)
-// app.use(session({
-//     secret: "bubdbd751(&^@J@)HUH@UIH",
-//     name: "sid",
-//     cookie:{
-//         maxAge: 1000 * 60 * 60 * 24 * 3,    // 3 days
-//         httpOnly: true,
-//         // secure: <string>process.env.NODE_ENV == 'production',
-//         secure: false
-//     },
-//     resave: false,
-//     saveUninitialized: false,
-//     store: new RedisStore({
-//         client: redisClient
-//     })
-// }));
+const RedisStore = connectRedis(session)
+app.use(session({
+    secret: <string>process.env.SESSION_SECRET,
+    name: <string>process.env.SESSION_NAME,
+    cookie:{
+        // maxAge: 1000 * 60 * 60 * 24 * 3,    // 3 days
+        maxAge: 1000 * 60 * 5,
+        httpOnly: true,
+        secure: <string>process.env.NODE_ENV == 'production',
+    },
+    resave: false,
+    saveUninitialized: false,
+    store: new RedisStore({
+        client: redisClient
+    })
+}));
 
 
 app.use('/', route);

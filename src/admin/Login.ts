@@ -1,12 +1,13 @@
 import { NextFunction, Request, Response } from "express";
-import jwt from 'jsonwebtoken';
-import bcrypt from 'bcryptjs';
-import crypto from 'crypto';
-import { convertToObject } from "typescript";
+
+declare module 'express-session' {
+    interface SessionData {
+        userIP: string;
+    }
+}
 
 const username:string = "adminadmin";
 const password: string = "password";
-const secret: string = 'kajsb%yhsuyh19872hN7y&Y&*Y!!BT!*TBR^[}&(:"KHY';
 const expiresIn: number = 3 * 24 * 60 * 60;
 
 const adminLogin = async (req:Request, res: Response) => {
@@ -14,16 +15,11 @@ const adminLogin = async (req:Request, res: Response) => {
     const Password: string = req.body.password;
     if(Password == password && Username == username)
     {
-        let randomSalt: string = crypto.randomBytes(10).toString('hex');
-        const token: string = jwt.sign({ randomSalt }, secret, {
-            expiresIn: expiresIn
-        });
-        res.cookie('jwt', token), {
-            httpOnly: true, 
-            maxAge: expiresIn * 1000
-        };
-        console.log(req.socket.remoteAddress)
-        // req.session.userId = token;
+        let token: string = req.ip; 
+        // const token: string = jwt.sign({ Salt }, secret, {
+        //     expiresIn: expiresIn
+        // });
+        req.session.userIP = token;
         res.status(200).send("ok!");
     }
     else
@@ -34,33 +30,12 @@ const adminLogin = async (req:Request, res: Response) => {
 }
 
 const isAdmin = async (req:Request, res: Response, next: NextFunction) => {
-    const token: string = req.cookies.jwt;
-
-    // check if token exists and is valid
-    if(token)
-    {
-        jwt.verify(token, secret, (error: jwt.VerifyErrors | null, decodedToken: jwt.JwtPayload | undefined) => {
-            if(error)
-            {
-                res.status(401).send("Unauthorised!");
-                return;
-            }
-            else
-            {
-                next();
-            }
-        })
-    }
-    else
+    if(!req.session || !req.session.userIP)
     {
         res.status(401).send("Unauthorised!");
         return;
     }
+    next();
 }
 
-const getAdmin = async (req:Request, res: Response) => {
-    console.log(req.ip);
-    res.status(200).send("Ok");
-}
-
-export { adminLogin, isAdmin, getAdmin }
+export { adminLogin, isAdmin }
