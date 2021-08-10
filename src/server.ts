@@ -1,5 +1,6 @@
 import express from "express";
 import { SessionOptions } from 'express-session'
+import { RedisStoreOptions } from 'connect-redis'
 import ioredis from 'ioredis'
 import cors from 'cors'
 import dotenv from "dotenv";
@@ -18,6 +19,7 @@ import { connectTimeTableDB } from "./database/TimeTable_Connection";
 
 // Configure the Environment Variables
 dotenv.config();
+
 app.use(cors({
     origin: [`https://acadhere.vercel.app/`],
     credentials: true,
@@ -26,7 +28,6 @@ app.use(cors({
 app.use(limiter);
 app.use(bodyParser.json());
 app.use(cookieParser());
-app.use('/', route);
 
 // Connect to MongoDB
 connectNoticeBoardDB();
@@ -44,17 +45,29 @@ redisClient.on('error', err => {
     console.log('Error ' + err);
 });
 
+// async function delCache(key: string) {
+//     return await redisClient.del(key)
+// }
+
 // const RedisStore = connectRedis(session)
 // app.use(session({
-//     secret: <string>process.env.SESSION_SECRET,
-//     name: <string>process.env.SESSION_NAME,
+//     secret: "bubdbd751(&^@J@)HUH@UIH",
+//     name: "sid",
 //     cookie:{
 //         maxAge: 1000 * 60 * 60 * 24 * 3,    // 3 days
 //         httpOnly: true,
-//         secure: <string>process.env.NODE_ENV == 
-//     }
-//     store: new RedisStore({ redisClient })
-// }))
+//         // secure: <string>process.env.NODE_ENV == 'production',
+//         secure: false
+//     },
+//     resave: false,
+//     saveUninitialized: false,
+//     store: new RedisStore({
+//         client: redisClient
+//     })
+// }));
+
+
+app.use('/', route);
 
 // Setting up Port
 const PORT: Number = parseInt(<string>process.env.PORT, 10) || 3000;

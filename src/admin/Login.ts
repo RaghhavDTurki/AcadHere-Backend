@@ -1,6 +1,8 @@
 import { NextFunction, Request, Response } from "express";
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
+import crypto from 'crypto';
+import { convertToObject } from "typescript";
 
 const username:string = "adminadmin";
 const password: string = "password";
@@ -12,7 +14,7 @@ const adminLogin = async (req:Request, res: Response) => {
     const Password: string = req.body.password;
     if(Password == password && Username == username)
     {
-        let randomSalt: string = await bcrypt.genSalt(10);
+        let randomSalt: string = crypto.randomBytes(10).toString('hex');
         const token: string = jwt.sign({ randomSalt }, secret, {
             expiresIn: expiresIn
         });
@@ -20,6 +22,8 @@ const adminLogin = async (req:Request, res: Response) => {
             httpOnly: true, 
             maxAge: expiresIn * 1000
         };
+        console.log(req.socket.remoteAddress)
+        // req.session.userId = token;
         res.status(200).send("ok!");
     }
     else
