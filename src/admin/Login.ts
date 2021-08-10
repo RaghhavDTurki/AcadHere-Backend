@@ -15,6 +15,7 @@ const adminLogin = async (req:Request, res: Response) => {
     if(Password == password && Username == username)
     {
         let token: string = req.ip; 
+        console.log(token)
         // const token: string = jwt.sign({ Salt }, secret, {
         //     expiresIn: expiresIn
         // });
