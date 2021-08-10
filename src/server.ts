@@ -21,11 +21,7 @@ import { connectTimeTableDB } from "./database/TimeTable_Connection";
 dotenv.config();
 
 app.enable('trust proxy')
-app.use(cors({
-    origin: [`https://acadhere.vercel.app/`],
-    credentials: true,
-    preflightContinue: true
-}));
+app.use(cors());
 app.use(limiter);
 app.use(bodyParser.json());
 app.use(cookieParser());
