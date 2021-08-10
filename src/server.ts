@@ -1,15 +1,19 @@
-// import { sendEmail } from './routes/contactUs/sendEmail';
-import { limiter } from './middleware/rateLimiter';
 import express from "express";
+import { SessionOptions } from 'express-session'
 import ioredis from 'ioredis'
 import cors from 'cors'
-const app = express();
 import dotenv from "dotenv";
 import bodyParser from "body-parser";
+import session from "express-session";
+import connectRedis from 'connect-redis'
+
+const app = express();
+
+import route from './routes/router'
 import { connectNoticeBoardDB } from "./database/NoticeBoard_Connection";
 import { connectResourceDB } from "./database/Resource_Connection";
 import cookieParser from 'cookie-parser'
-import route from './routes/router'
+import { limiter } from './middleware/rateLimiter';
 import { connectTimeTableDB } from "./database/TimeTable_Connection";
 
 // Configure the Environment Variables
@@ -40,9 +44,17 @@ redisClient.on('error', err => {
     console.log('Error ' + err);
 });
 
-// async function delCache(key: string) {
-//     return await redisClient.del(key);
-// }
+// const RedisStore = connectRedis(session)
+// app.use(session({
+//     secret: <string>process.env.SESSION_SECRET,
+//     name: <string>process.env.SESSION_NAME,
+//     cookie:{
+//         maxAge: 1000 * 60 * 60 * 24 * 3,    // 3 days
+//         httpOnly: true,
+//         secure: <string>process.env.NODE_ENV == 
+//     }
+//     store: new RedisStore({ redisClient })
+// }))
 
 // Setting up Port
 const PORT: Number = parseInt(<string>process.env.PORT, 10) || 3000;
