@@ -58,4 +58,9 @@ const isAdmin = async (req:Request, res: Response, next: NextFunction) => {
     }
 }
 
-export { adminLogin, isAdmin }
+const getAdmin = async (req:Request, res: Response) => {
+    console.log(req.ip);
+    res.status(200).send("Ok");
+}
+
+export { adminLogin, isAdmin, getAdmin }
