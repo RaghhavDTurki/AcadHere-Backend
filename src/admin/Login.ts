@@ -10,12 +10,20 @@ const username = <string>process.env.ADMIN_USERNAME;
 const password = <string>process.env.ADMIN_PASSWORD;
 
 const adminLogin = async (req:Request, res: Response) => {
+
+    let token: string = req.ip; 
+    let sessionKey = await redisClient.get(`rIP: ${token}`);
+
+    if(sessionKey)
+    {
+        res.status(200).send("ok!");
+        return;
+    }
+    
     const Username: string = req.body.username;
     const Password: string = req.body.password;
     if(Password == password && Username == username)
     {
-        let token: string = req.ip; 
-        let sessionKey = await redisClient.get(`rIP: ${token}`);
 
         if(!sessionKey)
         {
