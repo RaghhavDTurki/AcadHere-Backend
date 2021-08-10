@@ -8,7 +8,6 @@ declare module 'express-session' {
 
 const username:string = "adminadmin";
 const password: string = "password";
-const expiresIn: number = 3 * 24 * 60 * 60;
 
 const adminLogin = async (req:Request, res: Response) => {
     const Username: string = req.body.username;

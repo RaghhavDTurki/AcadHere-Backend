@@ -55,8 +55,7 @@ app.use(session({
     secret: <string>process.env.SESSION_SECRET,
     name: <string>process.env.SESSION_NAME,
     cookie:{
-        // maxAge: 1000 * 60 * 60 * 24 * 3,    // 3 days
-        maxAge: 1000 * 60 * 5,
+        maxAge: 1000 * 60 * 60 * 24 * 3,    // 3 days
         httpOnly: true,
         secure: <string>process.env.NODE_ENV == 'production',
     },
