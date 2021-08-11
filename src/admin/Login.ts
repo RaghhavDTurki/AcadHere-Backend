@@ -13,7 +13,7 @@ const adminLogin = async (req:Request, res: Response) => {
 
     let token: string = req.ip; 
     let sessionKey = await redisClient.get(`rIP: ${token}`);
-    
+
     const Username: string = req.body.username;
     const Password: string = req.body.password;
     if(Password == password && Username == username)
@@ -25,7 +25,7 @@ const adminLogin = async (req:Request, res: Response) => {
                 createdAt: Date.now(),
                 ip_address: req.ip
             }
-            redisClient.set(`rIP: ${req.ip}`, JSON.stringify(sessionObject), 'EX', 3600 * 3);
+            redisClient.set(`rIP: ${req.ip}`, JSON.stringify(sessionObject), 'EX', 3600 * 24 * 3);
         }
 
         res.status(200).send("ok!");
