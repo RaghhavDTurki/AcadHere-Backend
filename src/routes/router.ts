@@ -60,5 +60,6 @@ route.delete("/admin/timetable/:id", isAdmin, deleteTimeTable);
 route.post("/OAuth", validateToken);
 
 // Admin Routes
+route.get("/admin/login", isAdmin)
 route.post("/admin/login", adminLogin)
 export = route;
