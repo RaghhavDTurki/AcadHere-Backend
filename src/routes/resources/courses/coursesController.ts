@@ -11,7 +11,7 @@ const createCourse = (req: Request,res: Response): void | undefined => {
         return;
     }
 
-    if(!req.body.Url || !req.body.Message || !req.body.Resouce_Type)
+    if(!req.body.Url || !req.body.Message || !req.body.Resource_Type)
     {
         res.status(400).send("Fill in all the required parameters!");
         return;
