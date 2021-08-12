@@ -2,7 +2,7 @@ import { Schema, model } from 'mongoose';
 
 export interface TimeTableInterface{
     Batch: string,
-    Lab_Batch: string, 
+    Lab_Batch?: string | null, 
     Day: number[],
     Teacher: string,
     Subject: string,
@@ -18,7 +18,6 @@ let schema = new Schema<TimeTableInterface>({
     },
     Lab_Batch:{
         type:String,
-        required:true
     },
     Day:{
         type:[Number],

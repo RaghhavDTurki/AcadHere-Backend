@@ -53,7 +53,7 @@ route.delete("/admin/resources/courses/:id", isAdmin, deleteCourse);
 
 // PATHS for Time Table
 route.post("/admin/timetable", isAdmin, createSlot);
-route.patch("/admin/timetable/:id", isAdmin,updateTimeTable);
+route.patch("/admin/timetable/:id", isAdmin, updateTimeTable);
 route.delete("/admin/timetable/:id", isAdmin, deleteTimeTable);
 
 // PATH for verification of user id_token
