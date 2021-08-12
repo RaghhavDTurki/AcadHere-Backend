@@ -14,10 +14,10 @@ interface SlotInterface{
 
 function compare(ObjA: SlotInterface, ObjB: SlotInterface)
 {
-    if( ObjA.Start_Time < ObjB.Start_Time ){
+    if( +ObjA.Start_Time < +ObjB.Start_Time ){
         return -1;
       }
-    if ( ObjA.Start_Time > ObjB.Start_Time ){
+    if ( +ObjA.Start_Time > +ObjB.Start_Time ){
     return 1;
     }
     return 0;
