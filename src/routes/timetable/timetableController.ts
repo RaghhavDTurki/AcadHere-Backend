@@ -23,6 +23,7 @@ const createSlot = (req: Request, res: Response): void => {
         Batch : <string>req.body.Batch,
         Lab_Batch: (req.body.Lab_Batch)?req.body.Lab_Batch:null,
         Day : req.body.Day, 
+        Start_Time : req.body.Start_Time, 
         Teacher: <string>req.body.Teacher,
         Subject: <string>req.body.Subject,
         Time: <string>req.body.Time,
