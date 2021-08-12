@@ -1,4 +1,3 @@
-import { Request, Response } from 'express';
 import { Document } from 'mongoose';
 import { TimeTableDB, TimeTableInterface } from './../../models/TimeTableSchema';
 
