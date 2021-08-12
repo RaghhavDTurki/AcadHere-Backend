@@ -46,7 +46,7 @@ const getTimeTable = async (req: Request, res: Response): Promise<void> => {
         // Query for Lab Batch and Day
         let labBatch = <string>req.query.lb;
         let day = parseInt(<string>req.query.day, 10);
-        let labBatchAndDayQueryResponse: (TimeTableInterface & Document<any, any, TimeTableInterface>)[] = await getDayAndLabBatchQuery(labBatch, day);
+        let labBatchAndDayQueryResponse = await getDayAndLabBatchQuery(labBatch, day);
         res.send(labBatchAndDayQueryResponse)
     }
     else if(req.query.lb)
@@ -60,7 +60,7 @@ const getTimeTable = async (req: Request, res: Response): Promise<void> => {
     {
         // Query Time Table for a Day
         let day = parseInt(<string>req.query.day, 10);
-        let dayQueryResponse: (TimeTableInterface & Document<any, any, TimeTableInterface>)[] = await getDayQuery(day);
+        let dayQueryResponse = await getDayQuery(day);
         res.send(dayQueryResponse);
     }
     else

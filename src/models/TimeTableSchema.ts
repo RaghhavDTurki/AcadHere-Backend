@@ -6,7 +6,7 @@ export interface TimeTableInterface{
     Day: number[],
     Teacher: string,
     Subject: string,
-    Time: string,
+    Time: string[],
     Link: string
 }
 
@@ -32,7 +32,7 @@ let schema = new Schema<TimeTableInterface>({
         required:true
     },
     Time:{
-        type:String,
+        type:[String],
         required: true
     },
     Link:{
