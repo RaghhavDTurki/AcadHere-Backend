@@ -46,6 +46,11 @@ const getTimeTable = async (req: Request, res: Response): Promise<void> => {
         // Query for Lab Batch and Day
         let labBatch = <string>req.query.lb;
         let day = parseInt(<string>req.query.day, 10);
+        if(isNaN(day))
+        {
+            res.status(400).send("Day should be an integer")
+            return;
+        }
         let labBatchAndDayQueryResponse = await getDayAndLabBatchQuery(labBatch, day);
         res.send(labBatchAndDayQueryResponse)
     }
@@ -60,6 +65,11 @@ const getTimeTable = async (req: Request, res: Response): Promise<void> => {
     {
         // Query Time Table for a Day
         let day = parseInt(<string>req.query.day, 10);
+        if(isNaN(day))
+        {
+            res.status(400).send("Day should be an integer")
+            return;
+        }
         let dayQueryResponse = await getDayQuery(day);
         res.send(dayQueryResponse);
     }
