@@ -49,7 +49,7 @@ const isAdmin = async (req:Request, res: Response, next: NextFunction) => {
     next();
 }
 
-const AdminLogin = async (req:Request, res: Response, next: NextFunction) => {
+const AdminLogin = async (req:Request, res: Response) => {
     const ip_address = req.ip;
     const sesssionEntry = await redisClient.get(`rIP: ${ip_address}`);
     if(!sesssionEntry)
