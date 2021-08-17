@@ -51,7 +51,9 @@ const isAdmin = async (req:Request, res: Response, next: NextFunction) => {
 
 const AdminLogin = async (req:Request, res: Response) => {
     const ip_address = req.ip;
+    console.log(ip_address);
     const sesssionEntry = await redisClient.get(`rIP: ${ip_address}`);
+    console.log(sesssionEntry);
     if(!sesssionEntry)
     {
         res.status(401).send("Unauthorised!");
