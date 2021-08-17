@@ -49,4 +49,16 @@ const isAdmin = async (req:Request, res: Response, next: NextFunction) => {
     next();
 }
 
-export { adminLogin, isAdmin }
+const AdminLogin = async (req:Request, res: Response, next: NextFunction) => {
+    const ip_address = req.ip;
+    const sesssionEntry = await redisClient.get(`rIP: ${ip_address}`);
+    if(!sesssionEntry)
+    {
+        res.status(401).send("Unauthorised!");
+        return;
+    }
+
+    res.status(200).send("ok");
+}
+
+export { adminLogin, isAdmin, AdminLogin }

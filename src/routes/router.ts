@@ -1,6 +1,6 @@
 import { sendMail } from './contactUs/contactUsController';
 import { Router } from "express";
-import { adminLogin, isAdmin } from "../admin/Login";
+import { AdminLogin, adminLogin, isAdmin } from "../admin/Login";
 import { getContests } from "./cp_reminder/cp_reminder";
 import { getHackathons } from './hackathons/hackathon.controller';
 import { isAuthorized } from "./notice_board/Authorization";
@@ -60,6 +60,6 @@ route.delete("/admin/timetable/:id", isAdmin, deleteTimeTable);
 route.post("/OAuth", validateToken);
 
 // Admin Routes
-route.get("/admin/login", isAdmin)
+route.get("/admin/login", AdminLogin)
 route.post("/admin/login", adminLogin)
 export = route;
