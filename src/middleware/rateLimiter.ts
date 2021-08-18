@@ -1,4 +1,3 @@
-import { redisClient } from './../server';
 import RateLimit from 'express-rate-limit';
 import RedisStore from "rate-limit-redis";
 import redis from 'redis'
@@ -12,7 +11,7 @@ export const limiter = RateLimit({
         })
     }),
     windowMs: 60 * 60 * 1000,
-    max: 300,
+    max: 100,
     headers: true,
     message: "You have reached the max limit of requests in 1 hour!"
 })
