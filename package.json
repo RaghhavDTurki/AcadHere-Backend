@@ -43,6 +43,6 @@
     "mongoose": "^5.13.7",
     "nodemailer": "^6.6.3",
     "rate-limit-redis": "^2.1.0",
-    "ts-node": "^10.2.0"
+    "ts-node": "^10.2.1"
   }
 }
