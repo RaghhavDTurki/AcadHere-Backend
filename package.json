@@ -38,7 +38,7 @@
     "entities": "^3.0.1",
     "express": "^4.17.1",
     "express-rate-limit": "^5.3.0",
-    "google-auth-library": "^7.9.1",
+    "google-auth-library": "^7.9.2",
     "ioredis": "^4.27.9",
     "mongoose": "^6.0.6",
     "nodemailer": "^6.6.3",
