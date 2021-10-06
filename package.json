@@ -41,7 +41,7 @@
     "google-auth-library": "^7.10.0",
     "ioredis": "^4.27.9",
     "mongoose": "^6.0.9",
-    "nodemailer": "^6.6.3",
+    "nodemailer": "^6.6.5",
     "rate-limit-redis": "^2.1.0",
     "ts-node": "^10.2.1"
   }
