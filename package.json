@@ -39,7 +39,7 @@
     "express": "^4.17.1",
     "express-rate-limit": "^5.5.1",
     "google-auth-library": "^7.10.0",
-    "ioredis": "^4.27.9",
+    "ioredis": "^4.28.0",
     "mongoose": "^6.0.9",
     "nodemailer": "^6.7.1",
     "rate-limit-redis": "^2.1.0",
