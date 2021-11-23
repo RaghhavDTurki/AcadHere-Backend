@@ -10,10 +10,6 @@
     "start-dev": "npm run build && node dist/server.js",
     "dev": "nodemon"
   },
-  "engines": {
-    "node": "16.6.1",
-    "npm": "7.20.5"
-  },
   "keywords": [],
   "author": "",
   "license": "ISC",
