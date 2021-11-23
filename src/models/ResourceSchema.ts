@@ -15,7 +15,7 @@ let resourceSchema = new Schema<ResourceInterface>({
     },
     Post_Time:{
         type:Date,
-        default:Date.now,
+        default:new Date(),
         required:true,
     },
     Subject_Code:{

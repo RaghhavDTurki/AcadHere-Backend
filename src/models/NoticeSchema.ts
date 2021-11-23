@@ -23,7 +23,7 @@ let schema = new Schema<NoticeInterface>({
     },
     Post_Time:{
         type:Date,
-        default:Date.now,
+        default:new Date(),
         required:true,
     },
     Status:{
