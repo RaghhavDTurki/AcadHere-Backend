@@ -2,6 +2,12 @@ import express from "express";
 import ioredis from 'ioredis'
 import cors from 'cors'
 import dotenv from "dotenv";
+// import swaggerUI from 'swagger-ui-express';
+// import YAML from 'yamljs';
+// import type { OpenAPIV3 } from 'express-openapi-validator/dist/framework/types'
+// import { resolve } from 'path';
+// const openapi = YAML.load(resolve(__dirname, '../openapi.yaml')) as OpenAPIV3.Document;
+
 
 const app = express();
 
@@ -36,7 +42,7 @@ redisClient.on('error', err => {
 });
 
 app.use('/', route);
-
+// app.use("/docs", swaggerUI.serve, swaggerUI.setup(openapi));
 // Setting up Port
 const PORT: Number = parseInt(<string>process.env.PORT, 10) || 3000;
 
