@@ -38,7 +38,7 @@
     "express-openapi-validator": "^4.13.5",
     "express-rate-limit": "^6.0.5",
     "google-auth-library": "^7.11.0",
-    "ioredis": "^4.28.2",
+    "ioredis": "^4.28.3",
     "mongoose": "^6.1.6",
     "nodemailer": "^6.7.2",
     "rate-limit-redis": "^2.1.0",
