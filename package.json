@@ -1,7 +1,5 @@
 {
-  "name": "acadhere-backend",
-  "version": "1.0",
-  "description": "",
+  "private": true,
   "main": "server.js",
   "scripts": {
     "start": "node dist/server.js",
