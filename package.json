@@ -41,7 +41,7 @@
     "ioredis": "^4.28.3",
     "mongoose": "^6.1.7",
     "nodemailer": "^6.7.2",
-    "rate-limit-redis": "^2.1.0",
+    "rate-limit-redis": "^3.0.0",
     "swagger-ui-express": "^4.3.0",
     "ts-node": "^10.4.0",
     "yamljs": "^0.3.0"
