@@ -30,7 +30,7 @@
     "axios": "^0.25.0",
     "cheerio": "^1.0.0-rc.10",
     "cors": "^2.8.5",
-    "dotenv": "^14.2.0",
+    "dotenv": "^14.3.0",
     "entities": "^3.0.1",
     "express": "^4.17.2",
     "express-openapi-validator": "^4.13.5",
