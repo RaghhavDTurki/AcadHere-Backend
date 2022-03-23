@@ -37,7 +37,7 @@
     "express-rate-limit": "^6.1.0",
     "google-auth-library": "^7.11.0",
     "ioredis": "^4.28.3",
-    "mongoose": "^6.1.7",
+    "mongoose": "^6.2.8",
     "nodemailer": "^6.7.2",
     "rate-limit-redis": "^2.1.0",
     "swagger-ui-express": "^4.3.0",
