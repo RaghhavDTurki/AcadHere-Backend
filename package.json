@@ -30,18 +30,18 @@
     "axios": "^0.25.0",
     "cheerio": "^1.0.0-rc.10",
     "cors": "^2.8.5",
-    "dotenv": "^14.2.0",
+    "dotenv": "^16.0.0",
     "entities": "^3.0.1",
     "express": "^4.17.2",
     "express-openapi-validator": "^4.13.5",
-    "express-rate-limit": "^6.1.0",
+    "express-rate-limit": "^6.3.0",
     "google-auth-library": "^7.11.0",
     "ioredis": "^4.28.3",
     "mongoose": "^6.1.7",
     "nodemailer": "^6.7.2",
     "rate-limit-redis": "^2.1.0",
     "swagger-ui-express": "^4.3.0",
-    "ts-node": "^10.4.0",
+    "ts-node": "^10.7.0",
     "yamljs": "^0.3.0"
   }
 }
