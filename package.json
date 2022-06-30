@@ -38,7 +38,7 @@
     "google-auth-library": "^7.11.0",
     "ioredis": "^4.28.3",
     "mongoose": "^6.2.8",
-    "nodemailer": "^6.7.2",
+    "nodemailer": "^6.7.6",
     "rate-limit-redis": "^3.0.1",
     "swagger-ui-express": "^4.3.0",
     "ts-node": "^10.4.0",
